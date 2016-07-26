@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ZiU-cV-OD1">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Coordinate Header View Controller-->
+        <scene sceneID="7pX-el-U5o">
+            <objects>
+                <viewController id="ZiU-cV-OD1" customClass="CoordinateHeaderViewController" customModule="DemoUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GzB-H0-zrp"/>
+                        <viewControllerLayoutGuide type="bottom" id="1TY-AD-gmz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GMa-i7-40Q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SHb-ep-ac0">
+                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.045508780759999999" blue="0.1883616887" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2hD-VE-qDJ"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="wPE-yy-SYV" appends="YES" id="ofZ-Ce-gmP"/>
+                                </connections>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YJt-tp-2iK">
+                                <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.33333333329999998" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YJt-tp-2iK" firstAttribute="top" secondItem="SHb-ep-ac0" secondAttribute="bottom" id="0A6-bN-spb"/>
+                            <constraint firstItem="SHb-ep-ac0" firstAttribute="leading" secondItem="GMa-i7-40Q" secondAttribute="leading" id="0oh-D5-sOb"/>
+                            <constraint firstAttribute="trailing" secondItem="YJt-tp-2iK" secondAttribute="trailing" id="Fo7-Mt-vBg"/>
+                            <constraint firstItem="1TY-AD-gmz" firstAttribute="top" secondItem="YJt-tp-2iK" secondAttribute="bottom" id="VVh-hH-k5s"/>
+                            <constraint firstAttribute="trailing" secondItem="SHb-ep-ac0" secondAttribute="trailing" id="YdX-lu-z12"/>
+                            <constraint firstItem="YJt-tp-2iK" firstAttribute="leading" secondItem="GMa-i7-40Q" secondAttribute="leading" id="gxu-qB-Je8"/>
+                            <constraint firstItem="SHb-ep-ac0" firstAttribute="top" secondItem="GzB-H0-zrp" secondAttribute="bottom" id="hzf-Wb-dWC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="headerTopConstraint" destination="hzf-Wb-dWC" id="x2c-Lf-FI6"/>
+                        <outlet property="headerView" destination="SHb-ep-ac0" id="Pfu-Q1-W8E"/>
+                        <outlet property="scrollView" destination="YJt-tp-2iK" id="Egi-8F-qon"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="33C-31-EVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="wPE-yy-SYV">
+                    <connections>
+                        <action selector="exit:" destination="ZiU-cV-OD1" id="C24-sW-08b"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="313" y="353"/>
+        </scene>
+    </scenes>
+</document>
