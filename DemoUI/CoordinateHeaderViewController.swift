@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class CoordinateHeaderViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
@@ -34,10 +35,34 @@ class CoordinateHeaderViewController: UIViewController {
     @IBAction func exit(sender: UITapGestureRecognizer) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    var toggleView : UIView?
+    @IBAction func toggleAddView(sender: UIButton) {
+        if toggleView == nil {
+            print("\(scrollView.constraints.count)")
+            toggleView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+            toggleView?.backgroundColor = UIColor.whiteColor()
+            scrollView.addSubview(toggleView!)
+            toggleView!.snp_makeConstraints(closure: { (make) in
+                make.top.equalTo(scrollView)
+                make.leading.equalTo(scrollView)
+                make.width.equalTo(200)
+                make.height.equalTo(200)
+            })
+        }
+        else {
+            print("\(scrollView.constraints.count)")
+            toggleView?.removeFromSuperview()
+            toggleView = nil
+        }
+    }
 }
 
 extension CoordinateHeaderViewController : UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        if let toggleView = toggleView {
+            print("\(toggleView.frame)")
+        }
         if accumulator < threadshold && scrollView.contentOffset.y > 0{
             accumulator += scrollView.contentOffset.y
             print("accumulator set : \(accumulator)")

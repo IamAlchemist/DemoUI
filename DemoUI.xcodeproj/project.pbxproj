@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6450CCF31D476F7C007CF2AB /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6450CCF21D476F7C007CF2AB /* SnapKit.framework */; };
 		64BD47B21D47486500A2E89D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD47B11D47486500A2E89D /* AppDelegate.swift */; };
 		64BD47B71D47486500A2E89D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64BD47B51D47486500A2E89D /* Main.storyboard */; };
 		64BD47B91D47486500A2E89D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64BD47B81D47486500A2E89D /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6450CCF21D476F7C007CF2AB /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		64BD47AE1D47486500A2E89D /* DemoUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64BD47B11D47486500A2E89D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64BD47B61D47486500A2E89D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6450CCF31D476F7C007CF2AB /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +45,7 @@
 		64BD47A51D47486500A2E89D = {
 			isa = PBXGroup;
 			children = (
+				6450CCF21D476F7C007CF2AB /* SnapKit.framework */,
 				64BD47B01D47486500A2E89D /* DemoUI */,
 				64BD47AF1D47486500A2E89D /* Products */,
 			);
@@ -96,6 +100,7 @@
 				64BD47AA1D47486500A2E89D /* Sources */,
 				64BD47AB1D47486500A2E89D /* Frameworks */,
 				64BD47AC1D47486500A2E89D /* Resources */,
+				6450CCF41D476FE0007CF2AB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -152,6 +157,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6450CCF41D476FE0007CF2AB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		64BD47AA1D47486500A2E89D /* Sources */ = {
@@ -275,6 +297,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DemoUI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.morgenworks.DemoUI;
@@ -286,6 +312,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DemoUI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.morgenworks.DemoUI;
@@ -312,6 +342,7 @@
 				64BD47C21D47486500A2E89D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

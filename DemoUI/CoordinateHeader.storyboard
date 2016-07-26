@@ -19,10 +19,21 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SHb-ep-ac0">
                                 <rect key="frame" x="0.0" y="20" width="600" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUe-Ov-Wlc">
+                                        <rect key="frame" x="277" y="10" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="toggleAddView:" destination="ZiU-cV-OD1" eventType="touchUpInside" id="Fbk-qd-S1R"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.045508780759999999" blue="0.1883616887" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="2hD-VE-qDJ"/>
+                                    <constraint firstItem="uUe-Ov-Wlc" firstAttribute="centerX" secondItem="SHb-ep-ac0" secondAttribute="centerX" id="a4G-r3-NMi"/>
+                                    <constraint firstItem="uUe-Ov-Wlc" firstAttribute="centerY" secondItem="SHb-ep-ac0" secondAttribute="centerY" id="re4-lF-EjO"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="wPE-yy-SYV" appends="YES" id="ofZ-Ce-gmP"/>
