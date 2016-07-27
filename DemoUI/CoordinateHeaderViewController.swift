@@ -19,13 +19,28 @@ class CoordinateHeaderViewController: UIViewController {
     var headerTopConstraintY : CGFloat = 0
     let threadshold : CGFloat = 70
     
+    var isAnimating = false
+    var draging = false
+    var lastOffset : CGFloat = 0
+    
+    var debuging = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: 1024)
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: 2048)
         
-        for i in 0..<4 {
-            let markView = UIView(frame: CGRect(x: 0, y: i*256, width: Int(scrollView.bounds.width), height: 2))
+        let colors = [UIColor.redColor(),
+                     UIColor.orangeColor(),
+                     UIColor.yellowColor(),
+                     UIColor.greenColor(),
+                     UIColor.cyanColor(),
+                     UIColor.brownColor(),
+                     UIColor.purpleColor(),
+                     UIColor.grayColor()]
+        for (i, color) in colors.enumerate() {
+            let markView = UIView(frame: CGRect(x: 0, y: i*256, width: Int(scrollView.bounds.width), height: 20))
+            markView.backgroundColor = color
             scrollView.addSubview(markView)
         }
         
@@ -38,6 +53,9 @@ class CoordinateHeaderViewController: UIViewController {
     
     var toggleView : UIView?
     @IBAction func toggleAddView(sender: UIButton) {
+        headerTopConstraint.constant = -threadshold
+        accumulator = threadshold
+        
         if toggleView == nil {
             print("\(scrollView.constraints.count)")
             toggleView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
@@ -60,24 +78,75 @@ class CoordinateHeaderViewController: UIViewController {
 
 extension CoordinateHeaderViewController : UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let toggleView = toggleView {
-            print("\(toggleView.frame)")
-        }
-        if accumulator < threadshold && scrollView.contentOffset.y > 0{
-            accumulator += scrollView.contentOffset.y
-            print("accumulator set : \(accumulator)")
-            
-            headerTopConstraint.constant = max(-accumulator, -threadshold)
-            print("constant : \(headerTopConstraint.constant)")
-            scrollView.contentOffset.y = 0
+        if isAnimating {
+            lastOffset = scrollView.contentOffset.y
+            return
         }
         
-        if scrollView.contentOffset.y < 0 && accumulator >= 0 {
-            accumulator += scrollView.contentOffset.y
-            print("accumulator set : \(accumulator)")
-            headerTopConstraint.constant =  min(-accumulator, 0)
-            print("constant : \(headerTopConstraint.constant)")
+        let delta = scrollView.contentOffset.y - lastOffset
+        
+        if delta > 0
+            && scrollView.contentOffset.y > 0
+            && draging
+            && headerTopConstraint.constant > -threadshold {
+            
+            if (debuging) {
+                print("wtf, \(accumulator), \(scrollView.contentOffset.y)")
+            }
+            
+            accumulator += delta
+            scrollView.contentOffset.y = lastOffset
+            
+            accumulator = min(accumulator, threadshold)
+            headerTopConstraint.constant = -accumulator
+            
+        }
+        
+        if delta < 0
+            && scrollView.contentOffset.y < 0
+            && draging
+            && headerTopConstraint.constant < 0 {
+            if (debuging) {
+                print("wtf2, \(accumulator), \(scrollView.contentOffset.y)")
+            }
+            
+            if (debuging) {
+                print("wtf2.0.1, \(delta)")
+            }
+            
+            accumulator += delta
             scrollView.contentOffset.y = 0
+            accumulator = max(0, accumulator)
+            if (debuging) {
+                print("wtf2.0.2, \(accumulator)")
+            }
+            
+            headerTopConstraint.constant = -accumulator
+            if (debuging) {
+                print("wtf2.1, \(headerTopConstraint.constant)")
+            }
+        }
+        
+        lastOffset = scrollView.contentOffset.y
+    }
+
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        draging = true
+    }
+
+    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        print("velocity: \(velocity)")
+        
+        if velocity.y < -0.1 && accumulator >= threadshold {
+            isAnimating = true
+            accumulator = 0
+            headerTopConstraint.constant = 0
+            draging = false
+            
+            UIView.animateWithDuration(0.5,
+                                       animations: { self.view.layoutIfNeeded() },
+                                       completion: { _ in self.isAnimating = false  })
         }
     }
 }
