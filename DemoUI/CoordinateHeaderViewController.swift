@@ -16,9 +16,7 @@ class CoordinateHeaderViewController: UIViewController {
     @IBOutlet weak var headerTopConstraint: NSLayoutConstraint!
     
     var accumulator : CGFloat = 0
-    var headerTopConstraintY : CGFloat = 0
     let threadshold : CGFloat = 70
-    
     var isAnimating = false
     var draging = false
     var lastOffset : CGFloat = 0
