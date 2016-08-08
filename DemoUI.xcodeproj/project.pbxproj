@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		6450CCF31D476F7C007CF2AB /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6450CCF21D476F7C007CF2AB /* SnapKit.framework */; };
+		64ADF1101D5883B600A6AFAC /* AutoLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64ADF10E1D5883B600A6AFAC /* AutoLayout.storyboard */; };
+		64ADF1121D58843400A6AFAC /* AutoLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADF1111D58843400A6AFAC /* AutoLayoutViewController.swift */; };
+		64ADF1141D58846300A6AFAC /* AutoLayoutViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADF1131D58846300A6AFAC /* AutoLayoutViewControllerExtension.swift */; };
+		64ADF1171D58848100A6AFAC /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADF1151D58848100A6AFAC /* AvatarView.swift */; };
+		64ADF1181D58848100A6AFAC /* AvatarViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADF1161D58848100A6AFAC /* AvatarViewExtension.swift */; };
+		64ADF11A1D58848B00A6AFAC /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADF1191D58848B00A6AFAC /* Book.swift */; };
+		64ADF11C1D5884B200A6AFAC /* AliceInWonderland.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64ADF11B1D5884B200A6AFAC /* AliceInWonderland.plist */; };
 		64BD47B21D47486500A2E89D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD47B11D47486500A2E89D /* AppDelegate.swift */; };
 		64BD47B71D47486500A2E89D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64BD47B51D47486500A2E89D /* Main.storyboard */; };
 		64BD47B91D47486500A2E89D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64BD47B81D47486500A2E89D /* Assets.xcassets */; };
@@ -19,6 +26,13 @@
 
 /* Begin PBXFileReference section */
 		6450CCF21D476F7C007CF2AB /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		64ADF10F1D5883B600A6AFAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AutoLayout.storyboard; sourceTree = "<group>"; };
+		64ADF1111D58843400A6AFAC /* AutoLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutViewController.swift; sourceTree = "<group>"; };
+		64ADF1131D58846300A6AFAC /* AutoLayoutViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutViewControllerExtension.swift; sourceTree = "<group>"; };
+		64ADF1151D58848100A6AFAC /* AvatarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		64ADF1161D58848100A6AFAC /* AvatarViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarViewExtension.swift; sourceTree = "<group>"; };
+		64ADF1191D58848B00A6AFAC /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		64ADF11B1D5884B200A6AFAC /* AliceInWonderland.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AliceInWonderland.plist; sourceTree = "<group>"; };
 		64BD47AE1D47486500A2E89D /* DemoUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64BD47B11D47486500A2E89D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64BD47B61D47486500A2E89D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,6 +59,13 @@
 		64ADF10D1D58828700A6AFAC /* AutoLayout */ = {
 			isa = PBXGroup;
 			children = (
+				64ADF10E1D5883B600A6AFAC /* AutoLayout.storyboard */,
+				64ADF1191D58848B00A6AFAC /* Book.swift */,
+				64ADF1151D58848100A6AFAC /* AvatarView.swift */,
+				64ADF1161D58848100A6AFAC /* AvatarViewExtension.swift */,
+				64ADF1111D58843400A6AFAC /* AutoLayoutViewController.swift */,
+				64ADF1131D58846300A6AFAC /* AutoLayoutViewControllerExtension.swift */,
+				64ADF11B1D5884B200A6AFAC /* AliceInWonderland.plist */,
 			);
 			name = AutoLayout;
 			sourceTree = "<group>";
@@ -158,6 +179,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				64BD47BC1D47486500A2E89D /* LaunchScreen.storyboard in Resources */,
+				64ADF1101D5883B600A6AFAC /* AutoLayout.storyboard in Resources */,
+				64ADF11C1D5884B200A6AFAC /* AliceInWonderland.plist in Resources */,
 				64BD47B91D47486500A2E89D /* Assets.xcassets in Resources */,
 				64BD47B71D47486500A2E89D /* Main.storyboard in Resources */,
 				64BD47C61D474BA400A2E89D /* CoordinateHeader.storyboard in Resources */,
@@ -188,15 +211,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64ADF11A1D58848B00A6AFAC /* Book.swift in Sources */,
 				64BD47C41D4748FE00A2E89D /* MenuViewController.swift in Sources */,
+				64ADF1171D58848100A6AFAC /* AvatarView.swift in Sources */,
 				64BD47B21D47486500A2E89D /* AppDelegate.swift in Sources */,
+				64ADF1181D58848100A6AFAC /* AvatarViewExtension.swift in Sources */,
 				64BD47C81D474CB800A2E89D /* CoordinateHeaderViewController.swift in Sources */,
+				64ADF1141D58846300A6AFAC /* AutoLayoutViewControllerExtension.swift in Sources */,
+				64ADF1121D58843400A6AFAC /* AutoLayoutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		64ADF10E1D5883B600A6AFAC /* AutoLayout.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64ADF10F1D5883B600A6AFAC /* Base */,
+			);
+			name = AutoLayout.storyboard;
+			sourceTree = "<group>";
+		};
 		64BD47B51D47486500A2E89D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
