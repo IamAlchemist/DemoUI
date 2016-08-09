@@ -10,7 +10,8 @@ import UIKit
 
 class MenuViewController: UITableViewController {
     let segues = ["CoordinateHeader",
-                  "AutoLayout"]
+                  "AutoLayout",
+                  "CustomProtocol"]
 
 }
 
