@@ -8,7 +8,7 @@
         <!--Browser View Controller-->
         <scene sceneID="wys-v6-JHy">
             <objects>
-                <viewController id="Aw0-oh-BNp" customClass="BrowserViewController" customModule="NSURLProtocolExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Aw0-oh-BNp" customClass="BrowserViewController" customModule="DemoUI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="49c-yx-C7x"/>
                         <viewControllerLayoutGuide type="bottom" id="mVc-iW-4kM"/>
@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="upN-lg-nMi">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://raywenderlich.com" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="upN-lg-nMi">
                                 <rect key="frame" x="20" y="20" width="522" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>

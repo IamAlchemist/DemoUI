@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 var requestCount = 0
 
 class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
     
     var session: NSURLSession!
+    var mutableData: NSMutableData!
+    var response: NSURLResponse!
     
     override class func canInitWithRequest(request: NSURLRequest) -> Bool {
         if NSURLProtocol.propertyForKey("MyURLProtocolHandledKey", inRequest: request) != nil {
@@ -49,20 +52,63 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
         }
     }
     
-    func connection(connection: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
-        self.client!.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
+    func saveCachedResponse () {
+        guard let urlString = request.URL?.absoluteString else {
+            print("could not get url string")
+            return
+        }
+        
+        print("save \(requestCount - 1): \(urlString)")
+        // 1
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = delegate.managedObjectContext
+        
+        // 2
+        let cachedResponse = NSEntityDescription.insertNewObjectForEntityForName("CachedURLResponse", inManagedObjectContext: context) as NSManagedObject
+        
+        cachedResponse.setValue(mutableData, forKey: "data")
+        cachedResponse.setValue(urlString, forKey: "url")
+        cachedResponse.setValue(NSDate(), forKey: "timestamp")
+        cachedResponse.setValue(response.MIMEType, forKey: "mimeType")
+        cachedResponse.setValue(response.textEncodingName, forKey: "encoding")
+        
+        // 3
+        do {
+            try context.save()
+        } catch {
+            print("could not save response")
+        }
     }
     
-    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
-        self.client!.URLProtocol(self, didLoadData: data)
-    }
-    
-    func connectionDidFinishLoading(connection: NSURLConnection!) {
-        self.client!.URLProtocolDidFinishLoading(self)
-    }
-    
-    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
-        self.client!.URLProtocol(self, didFailWithError: error)
+    func cachedResponseForCurrentRequest() -> NSManagedObject? {
+        guard let urlString = request.URL?.absoluteURL else { return nil }
+        
+        // 1
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = delegate.managedObjectContext
+        
+        // 2
+        let fetchRequest = NSFetchRequest()
+        let entity = NSEntityDescription.entityForName("CachedURLResponse", inManagedObjectContext: context)
+        fetchRequest.entity = entity
+        
+        // 3
+        let predicate = NSPredicate(format:"url == %@", urlString)
+        fetchRequest.predicate = predicate
+        
+        // 4
+        do {
+            guard let result = try context.executeFetchRequest(fetchRequest) as? Array<NSManagedObject> else { return nil }
+            
+            if !result.isEmpty {
+                return result[0];
+            }
+        }
+        catch {
+            print("could not load cache")
+        }
+        
+        return nil
     }
 }
 
@@ -88,6 +134,8 @@ extension MyURLProtocol: NSURLSessionDownloadDelegate {
 extension MyURLProtocol: NSURLSessionDataDelegate {
     func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
         client?.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
+        self.response = response
+        mutableData = NSMutableData()
         completionHandler(.Allow)
     }
     
@@ -97,10 +145,12 @@ extension MyURLProtocol: NSURLSessionDataDelegate {
         }
         else {
             client?.URLProtocolDidFinishLoading(self)
+            saveCachedResponse()
         }
     }
     
     func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
         client?.URLProtocol(self, didLoadData: data)
+        mutableData.appendData(data)
     }
 }

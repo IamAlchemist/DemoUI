@@ -11,7 +11,8 @@
 		6459A8981D59A2C700C89728 /* MyURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459A8971D59A2C700C89728 /* MyURLProtocol.swift */; };
 		6459A89B1D59A5FF00C89728 /* CustomProtocol.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6459A8991D59A5FF00C89728 /* CustomProtocol.storyboard */; };
 		6459A89D1D59A64200C89728 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459A89C1D59A64200C89728 /* BrowserViewController.swift */; };
-		6459A89F1D59CEA200C89728 /* NSURLProtocolExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 6459A89E1D59CEA200C89728 /* NSURLProtocolExample.xcdatamodel */; };
+		6459A89F1D59CEA200C89728 /* NSURLProtocolExample2.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 6459A89E1D59CEA200C89728 /* NSURLProtocolExample2.xcdatamodel */; };
+		6459A9081D5B241400C89728 /* NSURLProtocolExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6459A9061D5B241400C89728 /* NSURLProtocolExample.xcdatamodeld */; };
 		64ADF1101D5883B600A6AFAC /* AutoLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64ADF10E1D5883B600A6AFAC /* AutoLayout.storyboard */; };
 		64ADF1121D58843400A6AFAC /* AutoLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADF1111D58843400A6AFAC /* AutoLayoutViewController.swift */; };
 		64ADF1141D58846300A6AFAC /* AutoLayoutViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADF1131D58846300A6AFAC /* AutoLayoutViewControllerExtension.swift */; };
@@ -33,7 +34,8 @@
 		6459A8971D59A2C700C89728 /* MyURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyURLProtocol.swift; sourceTree = "<group>"; };
 		6459A89A1D59A5FF00C89728 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CustomProtocol.storyboard; sourceTree = "<group>"; };
 		6459A89C1D59A64200C89728 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
-		6459A89E1D59CEA200C89728 /* NSURLProtocolExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NSURLProtocolExample.xcdatamodel; sourceTree = "<group>"; };
+		6459A89E1D59CEA200C89728 /* NSURLProtocolExample2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NSURLProtocolExample2.xcdatamodel; sourceTree = "<group>"; };
+		6459A9071D5B241400C89728 /* NSURLProtocolExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NSURLProtocolExample.xcdatamodel; sourceTree = "<group>"; };
 		64ADF10F1D5883B600A6AFAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AutoLayout.storyboard; sourceTree = "<group>"; };
 		64ADF1111D58843400A6AFAC /* AutoLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutViewController.swift; sourceTree = "<group>"; };
 		64ADF1131D58846300A6AFAC /* AutoLayoutViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -67,10 +69,11 @@
 		6459A8961D5982FD00C89728 /* CustomProtocol */ = {
 			isa = PBXGroup;
 			children = (
+				6459A9061D5B241400C89728 /* NSURLProtocolExample.xcdatamodeld */,
 				6459A8971D59A2C700C89728 /* MyURLProtocol.swift */,
 				6459A89C1D59A64200C89728 /* BrowserViewController.swift */,
 				6459A8991D59A5FF00C89728 /* CustomProtocol.storyboard */,
-				6459A89E1D59CEA200C89728 /* NSURLProtocolExample.xcdatamodel */,
+				6459A89E1D59CEA200C89728 /* NSURLProtocolExample2.xcdatamodel */,
 			);
 			name = CustomProtocol;
 			sourceTree = "<group>";
@@ -240,9 +243,10 @@
 				64BD47C81D474CB800A2E89D /* CoordinateHeaderViewController.swift in Sources */,
 				64ADF1141D58846300A6AFAC /* AutoLayoutViewControllerExtension.swift in Sources */,
 				6459A89D1D59A64200C89728 /* BrowserViewController.swift in Sources */,
-				6459A89F1D59CEA200C89728 /* NSURLProtocolExample.xcdatamodel in Sources */,
+				6459A89F1D59CEA200C89728 /* NSURLProtocolExample2.xcdatamodel in Sources */,
 				64ADF1121D58843400A6AFAC /* AutoLayoutViewController.swift in Sources */,
 				6459A8981D59A2C700C89728 /* MyURLProtocol.swift in Sources */,
+				6459A9081D5B241400C89728 /* NSURLProtocolExample.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +425,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6459A9061D5B241400C89728 /* NSURLProtocolExample.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6459A9071D5B241400C89728 /* NSURLProtocolExample.xcdatamodel */,
+			);
+			currentVersion = 6459A9071D5B241400C89728 /* NSURLProtocolExample.xcdatamodel */;
+			path = NSURLProtocolExample.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 64BD47A61D47486500A2E89D /* Project object */;
 }
