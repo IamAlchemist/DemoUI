@@ -20,8 +20,6 @@ class MyURLProtocol: NSURLProtocol {
     static weak var statisticDelegate : MyURLProtocolStatics?
     static var enable = true
     
-    var session: NSURLSession!
-    
     var connection: NSURLConnection!
     
     var mutableData: NSMutableData!
@@ -71,15 +69,13 @@ class MyURLProtocol: NSURLProtocol {
             
             let newRequest = self.request.mutableCopy() as! NSMutableURLRequest
             NSURLProtocol.setProperty(true, forKey: "MyURLProtocolHandledKey", inRequest: newRequest)
+            
+            // we really have to NSURLConnection, because I don't know why NSURLSession will make some crash
             self.connection = NSURLConnection(request: newRequest, delegate: self)
         }
     }
     
     override func stopLoading() {
-        if let session = session {
-            session.invalidateAndCancel()
-        }
-        
         if self.connection != nil {
             self.connection.cancel()
         }
@@ -214,34 +210,5 @@ extension MyURLProtocol {
     
     func connection(connection: NSURLConnection!, didFailWithError error: NSError!) {
         self.client!.URLProtocol(self, didFailWithError: error)
-    }
-}
-
-
-extension MyURLProtocol: NSURLSessionDataDelegate {
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
-        client?.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
-        self.response = response
-        mutableData = NSMutableData()
-        completionHandler(.Allow)
-    }
-    
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
-        if let error = error {
-            client?.URLProtocol(self, didFailWithError: error)
-        }
-        else {
-            client?.URLProtocolDidFinishLoading(self)
-//            MyURLProtocol.statisticDelegate?.urlDidLoad(request.URL!.absoluteString)
-            if MyURLProtocol.enable {
-                saveCachedResponseConcurrent()
-//                saveCachedResponse()
-            }
-        }
-    }
-    
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-        client?.URLProtocol(self, didLoadData: data)
-        mutableData.appendData(data)
     }
 }
