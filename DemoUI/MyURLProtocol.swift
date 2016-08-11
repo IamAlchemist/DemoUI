@@ -9,9 +9,16 @@
 import UIKit
 import CoreData
 
-var requestCount = 0
+
+protocol MyURLProtocolStatics: class {
+    func urlDidStart(url : String)
+    func urlDidLoad(url : String)
+}
 
 class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
+    
+    static weak var statisticDelegate : MyURLProtocolStatics?
+    static var enable = true
     
     var session: NSURLSession!
     var mutableData: NSMutableData!
@@ -21,9 +28,6 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
         if NSURLProtocol.propertyForKey("MyURLProtocolHandledKey", inRequest: request) != nil {
             return false
         }
-        
-        print("Request #\(requestCount): URL = \(request.URL?.absoluteString ?? "empty url")")
-        requestCount += 1
         
         return true
     }
@@ -38,8 +42,12 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
     }
     
     override func startLoading() {
-        if let cachedResponse = cachedResponseForCurrentRequestConcurrent() {
-            print("Serving response from cache")
+        MyURLProtocol.statisticDelegate?.urlDidStart(request.URL!.absoluteString)
+        
+        if let cachedResponse = cachedResponseForCurrentRequestConcurrent()
+//        if let cachedResponse = cachedResponseForCurrentRequest()
+            where MyURLProtocol.enable {
+            print("Serving from cache : \(request.URL!.absoluteString), \(NSThread.currentThread().description)")
             
             let data = cachedResponse.valueForKey("data") as! NSData
             let mimeType = cachedResponse.valueForKey("mimeType") as! String?
@@ -49,8 +57,11 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
             client!.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
             client!.URLProtocol(self, didLoadData: data)
             client!.URLProtocolDidFinishLoading(self)
+            
+            MyURLProtocol.statisticDelegate?.urlDidLoad(request.URL!.absoluteString)
         }
         else {
+            print("Load url :\(request.URL!.absoluteString), \(NSThread.currentThread().description)")
             let newRequest = self.request.mutableCopy() as! NSMutableURLRequest
             NSURLProtocol.setProperty(true, forKey: "MyURLProtocolHandledKey", inRequest: newRequest)
         
@@ -72,14 +83,12 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
             return
         }
         
-        print("save \(requestCount - 1): \(urlString)")
         // 1
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = delegate.managedObjectContext
         
         // 2
         context.performBlock {
-            print("--------------- \(NSThread.currentThread().description)")
             let cachedResponse = NSEntityDescription.insertNewObjectForEntityForName("CachedURLResponse", inManagedObjectContext: context) as NSManagedObject
             
             cachedResponse.setValue(self.mutableData, forKey: "data")
@@ -103,8 +112,6 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
             return
         }
         
-        print("save \(requestCount - 1): \(urlString)")
-
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = delegate.getCurrentManagedObjectContext()
         
@@ -212,7 +219,11 @@ extension MyURLProtocol: NSURLSessionDataDelegate {
         }
         else {
             client?.URLProtocolDidFinishLoading(self)
-            saveCachedResponseConcurrent()
+            MyURLProtocol.statisticDelegate?.urlDidLoad(request.URL!.absoluteString)
+            if MyURLProtocol.enable {
+                saveCachedResponseConcurrent()
+//                saveCachedResponse()
+            }
         }
     }
     

@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Common Web View Controller-->
         <scene sceneID="4FC-mo-w0r">
             <objects>
-                <viewController id="Cou-S5-pFd" sceneMemberID="viewController">
+                <viewController id="Cou-S5-pFd" customClass="CommonWebViewController" customModule="DemoUI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2aM-Ri-b5u"/>
                         <viewControllerLayoutGuide type="bottom" id="q1t-sP-mrc"/>
@@ -18,34 +18,55 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://raywenderlich.com" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vYv-iz-9bP">
-                                <rect key="frame" x="20" y="20" width="522" height="30"/>
+                                <rect key="frame" x="20" y="20" width="496" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmQ-fw-Ykw">
-                                <rect key="frame" x="550" y="20" width="30" height="30"/>
+                                <rect key="frame" x="524" y="20" width="30" height="33"/>
                                 <state key="normal" title="Go">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="go:" destination="Cou-S5-pFd" eventType="touchUpInside" id="Ofq-9e-0zF"/>
+                                </connections>
                             </button>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fio-eb-0uC">
-                                <rect key="frame" x="0.0" y="58" width="600" height="542"/>
+                                <rect key="frame" x="0.0" y="61" width="600" height="539"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8E0-kb-8LE">
+                                <rect key="frame" x="562" y="20" width="30" height="33"/>
+                                <color key="backgroundColor" red="0.29019609089999998" green="0.64705884459999996" blue="0.89019614459999996" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="S">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showStatics:" destination="Cou-S5-pFd" eventType="touchUpInside" id="TL6-HJ-NDt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8E0-kb-8LE" secondAttribute="trailing" constant="8" id="3EX-Mr-I1l"/>
                             <constraint firstItem="GmQ-fw-Ykw" firstAttribute="top" secondItem="2aM-Ri-b5u" secondAttribute="bottom" id="6GO-Eb-Tom"/>
                             <constraint firstItem="Fio-eb-0uC" firstAttribute="top" secondItem="GmQ-fw-Ykw" secondAttribute="bottom" constant="8" id="9XX-wG-rxM"/>
-                            <constraint firstAttribute="trailing" secondItem="GmQ-fw-Ykw" secondAttribute="trailing" constant="20" id="F12-ga-vWs"/>
                             <constraint firstItem="Fio-eb-0uC" firstAttribute="leading" secondItem="xfj-Ou-Kez" secondAttribute="leading" id="NqK-1n-1f7"/>
                             <constraint firstItem="vYv-iz-9bP" firstAttribute="top" secondItem="2aM-Ri-b5u" secondAttribute="bottom" id="U7w-m0-1nH"/>
                             <constraint firstItem="vYv-iz-9bP" firstAttribute="leading" secondItem="xfj-Ou-Kez" secondAttribute="leading" constant="20" id="ePw-3l-U00"/>
                             <constraint firstItem="q1t-sP-mrc" firstAttribute="top" secondItem="Fio-eb-0uC" secondAttribute="bottom" id="fFj-13-0Eu"/>
+                            <constraint firstItem="8E0-kb-8LE" firstAttribute="top" secondItem="xfj-Ou-Kez" secondAttribute="top" constant="20" id="p51-rL-VPd"/>
+                            <constraint firstItem="8E0-kb-8LE" firstAttribute="leading" secondItem="GmQ-fw-Ykw" secondAttribute="trailing" constant="8" id="s54-OD-Zia"/>
                             <constraint firstAttribute="trailing" secondItem="Fio-eb-0uC" secondAttribute="trailing" id="tZb-nz-g2p"/>
+                            <constraint firstItem="Fio-eb-0uC" firstAttribute="top" secondItem="8E0-kb-8LE" secondAttribute="bottom" constant="8" id="x1i-IO-m8Q"/>
                             <constraint firstItem="GmQ-fw-Ykw" firstAttribute="leading" secondItem="vYv-iz-9bP" secondAttribute="trailing" constant="8" id="yqt-pN-w22"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textField" destination="vYv-iz-9bP" id="FuM-VQ-WA9"/>
+                        <outlet property="webView" destination="Fio-eb-0uC" id="ww0-YP-Ose"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m5S-qM-gv0" sceneMemberID="firstResponder"/>
             </objects>
