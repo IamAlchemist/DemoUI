@@ -64,19 +64,22 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
         let context = delegate.managedObjectContext
         
         // 2
-        let cachedResponse = NSEntityDescription.insertNewObjectForEntityForName("CachedURLResponse", inManagedObjectContext: context) as NSManagedObject
-        
-        cachedResponse.setValue(mutableData, forKey: "data")
-        cachedResponse.setValue(urlString, forKey: "url")
-        cachedResponse.setValue(NSDate(), forKey: "timestamp")
-        cachedResponse.setValue(response.MIMEType, forKey: "mimeType")
-        cachedResponse.setValue(response.textEncodingName, forKey: "encoding")
-        
-        // 3
-        do {
-            try context.save()
-        } catch {
-            print("could not save response")
+        context.performBlock {
+            print("--------------- \(NSThread.currentThread().description)")
+            let cachedResponse = NSEntityDescription.insertNewObjectForEntityForName("CachedURLResponse", inManagedObjectContext: context) as NSManagedObject
+            
+            cachedResponse.setValue(self.mutableData, forKey: "data")
+            cachedResponse.setValue(urlString, forKey: "url")
+            cachedResponse.setValue(NSDate(), forKey: "timestamp")
+            cachedResponse.setValue(self.response.MIMEType, forKey: "mimeType")
+            cachedResponse.setValue(self.response.textEncodingName, forKey: "encoding")
+            
+            // 3
+            do {
+                try context.save()
+            } catch {
+                print("could not save response")
+            }
         }
     }
     

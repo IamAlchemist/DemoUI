@@ -44,7 +44,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
-    // MARK: - Core Data stack
+    // Get the new context if the DB context is on a different thread...
+    func getCurrentContext() -> NSManagedObjectContext {
+        let thisThread = NSThread.currentThread()
+        
+        if thisThread == NSThread.mainThread() {
+            return managedObjectContext;
+        }
+        
+        if let threadManagedObjectContext = thisThread.threadDictionary.objectForKey("MOC_KEY") as? NSManagedObjectContext {
+            return threadManagedObjectContext
+        }
+        else {
+            let threadManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+            threadManagedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+            thisThread.threadDictionary.setObject(threadManagedObjectContext, forKey: "MOC_KEY")
+            
+            return threadManagedObjectContext
+        }
+    }
+    
+    func saveThreadContext(context: NSManagedObjectContext) {
+        let managedObjectContext = context
+        managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        managedObjectContext.performBlock { 
+            if managedObjectContext.hasChanges {
+                do {
+                    try managedObjectContext.save()
+                }
+                catch {
+                    let nserror = error as NSError
+                    NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                    abort()
+                }
+            }
+        }
+        
+    }
     
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.zhongan.test" in the application's documents Application Support directory.
