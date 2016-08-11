@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data stack
 
     // Get the new context if the DB context is on a different thread...
-    func getCurrentContext() -> NSManagedObjectContext {
+    func getCurrentManagedObjectContext() -> NSManagedObjectContext {
         let thisThread = NSThread.currentThread()
         
         if thisThread == NSThread.mainThread() {

@@ -83,6 +83,30 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
         }
     }
     
+    func saveCachedResponseConcurrent() {
+        guard let urlString = request.URL?.absoluteString else {
+            print("could not get url string")
+            return
+        }
+        
+        print("save \(requestCount - 1): \(urlString)")
+        // 1
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = delegate.getCurrentManagedObjectContext()
+        
+        // 2
+        print("--------------- \(NSThread.currentThread().description)")
+        let cachedResponse = NSEntityDescription.insertNewObjectForEntityForName("CachedURLResponse", inManagedObjectContext: context) as NSManagedObject
+        
+        cachedResponse.setValue(self.mutableData, forKey: "data")
+        cachedResponse.setValue(urlString, forKey: "url")
+        cachedResponse.setValue(NSDate(), forKey: "timestamp")
+        cachedResponse.setValue(self.response.MIMEType, forKey: "mimeType")
+        cachedResponse.setValue(self.response.textEncodingName, forKey: "encoding")
+        
+        delegate.saveThreadContext(context)
+    }
+    
     func cachedResponseForCurrentRequest() -> NSManagedObject? {
         guard let urlString = request.URL?.absoluteURL else { return nil }
         
@@ -148,7 +172,7 @@ extension MyURLProtocol: NSURLSessionDataDelegate {
         }
         else {
             client?.URLProtocolDidFinishLoading(self)
-            saveCachedResponse()
+            saveCachedResponseConcurrent()
         }
     }
     
