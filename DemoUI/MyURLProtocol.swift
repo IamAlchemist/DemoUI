@@ -21,6 +21,9 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
     static var enable = true
     
     var session: NSURLSession!
+    
+    var connection: NSURLConnection!
+    
     var mutableData: NSMutableData!
     var response: NSURLResponse!
     
@@ -42,32 +45,38 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
     }
     
     override func startLoading() {
-        MyURLProtocol.statisticDelegate?.urlDidStart(request.URL!.absoluteString)
+//        MyURLProtocol.statisticDelegate?.urlDidStart(request.URL!.absoluteString)
         
-        if let cachedResponse = cachedResponseForCurrentRequestConcurrent()
-//        if let cachedResponse = cachedResponseForCurrentRequest()
-            where MyURLProtocol.enable {
-            print("Serving from cache : \(request.URL!.absoluteString), \(NSThread.currentThread().description)")
-            
-            let data = cachedResponse.valueForKey("data") as! NSData
-            let mimeType = cachedResponse.valueForKey("mimeType") as! String?
-            let encoding = cachedResponse.valueForKey("encoding") as! String?
-            
-            let response = NSURLResponse(URL: request.URL!, MIMEType: mimeType, expectedContentLength: data.length, textEncodingName: encoding)
-            client!.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
-            client!.URLProtocol(self, didLoadData: data)
-            client!.URLProtocolDidFinishLoading(self)
-            
-            MyURLProtocol.statisticDelegate?.urlDidLoad(request.URL!.absoluteString)
-        }
-        else {
-            print("Load url :\(request.URL!.absoluteString), \(NSThread.currentThread().description)")
-            let newRequest = self.request.mutableCopy() as! NSMutableURLRequest
-            NSURLProtocol.setProperty(true, forKey: "MyURLProtocolHandledKey", inRequest: newRequest)
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let currentMOC = delegate.getCurrentManagedObjectContext()
         
-            session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: self, delegateQueue: nil)
-            let task = session.dataTaskWithRequest(newRequest)
-            task.resume()
+        currentMOC.performBlock { 
+            if let cachedResponse = self.cachedResponseForCurrentRequestConcurrent(currentMOC)
+                where MyURLProtocol.enable {
+                print("Serving response from cache")
+//                print("Serving from cache : \(self.request.URL!.absoluteString), \(NSThread.currentThread().description)")
+                
+                let data = cachedResponse.valueForKey("data") as! NSData
+                let mimeType = cachedResponse.valueForKey("mimeType") as! String?
+                let encoding = cachedResponse.valueForKey("encoding") as! String?
+                
+                let response = NSURLResponse(URL: self.request.URL!, MIMEType: mimeType, expectedContentLength: data.length, textEncodingName: encoding)
+                self.client!.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
+                self.client!.URLProtocol(self, didLoadData: data)
+                self.client!.URLProtocolDidFinishLoading(self)
+                
+//                MyURLProtocol.statisticDelegate?.urlDidLoad(self.request.URL!.absoluteString)
+            }
+            else {
+                print("Serving response from NSURLConnection")
+//                print("Load url :\(self.request.URL!.absoluteString), \(NSThread.currentThread().description)")
+                let newRequest = self.request.mutableCopy() as! NSMutableURLRequest
+                NSURLProtocol.setProperty(true, forKey: "MyURLProtocolHandledKey", inRequest: newRequest)
+                
+                self.session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: self, delegateQueue: nil)
+                let task = self.session.dataTaskWithRequest(newRequest)
+                task.resume()
+            }
         }
     }
     
@@ -126,11 +135,9 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
         delegate.saveThreadContext(context)
     }
     
-    func cachedResponseForCurrentRequestConcurrent() -> NSManagedObject? {
+    func cachedResponseForCurrentRequestConcurrent(context: NSManagedObjectContext) -> NSManagedObject? {
         guard let urlString = request.URL?.absoluteURL else { return nil }
         
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = delegate.getCurrentManagedObjectContext()
         
         let fetchRequest = NSFetchRequest()
         let entity = NSEntityDescription.entityForName("CachedURLResponse", inManagedObjectContext: context)
@@ -186,24 +193,6 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
     }
 }
 
-extension MyURLProtocol: NSURLSessionTaskDelegate {
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didBecomeDownloadTask downloadTask: NSURLSessionDownloadTask) {
-        print("download")
-    }
-    
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didBecomeStreamTask streamTask: NSURLSessionStreamTask) {
-        print("strem")
-    }
-}
-
-extension MyURLProtocol: NSURLSessionDelegate {
-}
-
-extension MyURLProtocol: NSURLSessionDownloadDelegate {
-    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
-        print("download finish")
-    }
-}
 
 extension MyURLProtocol: NSURLSessionDataDelegate {
     func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
@@ -219,7 +208,7 @@ extension MyURLProtocol: NSURLSessionDataDelegate {
         }
         else {
             client?.URLProtocolDidFinishLoading(self)
-            MyURLProtocol.statisticDelegate?.urlDidLoad(request.URL!.absoluteString)
+//            MyURLProtocol.statisticDelegate?.urlDidLoad(request.URL!.absoluteString)
             if MyURLProtocol.enable {
                 saveCachedResponseConcurrent()
 //                saveCachedResponse()
