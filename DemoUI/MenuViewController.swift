@@ -11,7 +11,8 @@ import UIKit
 class MenuViewController: UITableViewController {
     let segues = ["CoordinateHeader",
                   "AutoLayout",
-                  "CustomProtocol"]
+                  "CustomProtocol",
+                  "CommonWebView"]
 
 }
 

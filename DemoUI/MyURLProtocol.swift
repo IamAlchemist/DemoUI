@@ -38,12 +38,26 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
     }
     
     override func startLoading() {
-        let newRequest = self.request.mutableCopy() as! NSMutableURLRequest
-        NSURLProtocol.setProperty(true, forKey: "MyURLProtocolHandledKey", inRequest: newRequest)
+        if let cachedResponse = cachedResponseForCurrentRequestConcurrent() {
+            print("Serving response from cache")
+            
+            let data = cachedResponse.valueForKey("data") as! NSData
+            let mimeType = cachedResponse.valueForKey("mimeType") as! String?
+            let encoding = cachedResponse.valueForKey("encoding") as! String?
+            
+            let response = NSURLResponse(URL: request.URL!, MIMEType: mimeType, expectedContentLength: data.length, textEncodingName: encoding)
+            client!.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
+            client!.URLProtocol(self, didLoadData: data)
+            client!.URLProtocolDidFinishLoading(self)
+        }
+        else {
+            let newRequest = self.request.mutableCopy() as! NSMutableURLRequest
+            NSURLProtocol.setProperty(true, forKey: "MyURLProtocolHandledKey", inRequest: newRequest)
         
-        session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: self, delegateQueue: nil)
-        let task = session.dataTaskWithRequest(newRequest)
-        task.resume()
+            session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: self, delegateQueue: nil)
+            let task = session.dataTaskWithRequest(newRequest)
+            task.resume()
+        }
     }
     
     override func stopLoading() {
@@ -90,12 +104,10 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
         }
         
         print("save \(requestCount - 1): \(urlString)")
-        // 1
+
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = delegate.getCurrentManagedObjectContext()
         
-        // 2
-        print("--------------- \(NSThread.currentThread().description)")
         let cachedResponse = NSEntityDescription.insertNewObjectForEntityForName("CachedURLResponse", inManagedObjectContext: context) as NSManagedObject
         
         cachedResponse.setValue(self.mutableData, forKey: "data")
@@ -107,7 +119,35 @@ class MyURLProtocol: NSURLProtocol, NSURLConnectionDelegate {
         delegate.saveThreadContext(context)
     }
     
+    func cachedResponseForCurrentRequestConcurrent() -> NSManagedObject? {
+        guard let urlString = request.URL?.absoluteURL else { return nil }
+        
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = delegate.getCurrentManagedObjectContext()
+        
+        let fetchRequest = NSFetchRequest()
+        let entity = NSEntityDescription.entityForName("CachedURLResponse", inManagedObjectContext: context)
+        fetchRequest.entity = entity
+        
+        let predicate = NSPredicate(format:"url == %@", urlString)
+        fetchRequest.predicate = predicate
+        
+        do {
+            guard let result = try context.executeFetchRequest(fetchRequest) as? Array<NSManagedObject> else { return nil }
+            
+            if !result.isEmpty {
+                return result[0];
+            }
+        }
+        catch {
+            print("could not load cache")
+        }
+        
+        return nil
+    }
+    
     func cachedResponseForCurrentRequest() -> NSManagedObject? {
+        
         guard let urlString = request.URL?.absoluteURL else { return nil }
         
         // 1
