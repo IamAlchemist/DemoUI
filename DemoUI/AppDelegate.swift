@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CleanroomLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        NSURLProtocol.registerClass(MyURLProtocol)
+        // NSURLProtocol.registerClass(MyURLProtocol)
+        let formatter = XcodeLogFormatter(timestampStyle: .`default`, severityStyle: .xcode, delimiterStyle: nil, showCallSite: true, showCallingThread: false, colorizer: nil)
+        let config = XcodeLogConfiguration(minimumSeverity: .verbose, colorTable: HulkColorTable(), formatter: formatter)
+        Log.enable(configuration: config)
+        Log.error?.message("jsidjfijsfijsdif")
         return true
     }
 
