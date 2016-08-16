@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		644EFDCA1D62E3190087846D /* CleanroomASL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644EFDC71D62E3190087846D /* CleanroomASL.framework */; };
+		644EFDCB1D62E3190087846D /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644EFDC81D62E3190087846D /* CleanroomLogger.framework */; };
+		644EFDCC1D62E3190087846D /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644EFDC91D62E3190087846D /* SnapKit.framework */; };
 		6459A8981D59A2C700C89728 /* MyURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459A8971D59A2C700C89728 /* MyURLProtocol.swift */; };
 		6459A89B1D59A5FF00C89728 /* CustomProtocol.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6459A8991D59A5FF00C89728 /* CustomProtocol.storyboard */; };
 		6459A89D1D59A64200C89728 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459A89C1D59A64200C89728 /* BrowserViewController.swift */; };
@@ -31,6 +34,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		644EFDC71D62E3190087846D /* CleanroomASL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomASL.framework; path = Carthage/Build/iOS/CleanroomASL.framework; sourceTree = "<group>"; };
+		644EFDC81D62E3190087846D /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = Carthage/Build/iOS/CleanroomLogger.framework; sourceTree = "<group>"; };
+		644EFDC91D62E3190087846D /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		6459A8971D59A2C700C89728 /* MyURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyURLProtocol.swift; sourceTree = "<group>"; };
 		6459A89A1D59A5FF00C89728 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CustomProtocol.storyboard; sourceTree = "<group>"; };
 		6459A89C1D59A64200C89728 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +68,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644EFDCA1D62E3190087846D /* CleanroomASL.framework in Frameworks */,
+				644EFDCB1D62E3190087846D /* CleanroomLogger.framework in Frameworks */,
+				644EFDCC1D62E3190087846D /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +100,9 @@
 		64A7548A1D5DD00C006E72C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				644EFDC71D62E3190087846D /* CleanroomASL.framework */,
+				644EFDC81D62E3190087846D /* CleanroomLogger.framework */,
+				644EFDC91D62E3190087846D /* SnapKit.framework */,
 				64A754C61D61A5F0006E72C3 /* CleanroomASL.framework */,
 			);
 			name = Frameworks;
@@ -242,6 +254,8 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CleanroomASL.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CleanroomLogger.framework",
 			);
 			outputPaths = (
 			);
