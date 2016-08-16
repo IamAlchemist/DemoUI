@@ -1,0 +1,6 @@
+[submodule "Carthage/Checkouts/CleanroomASL"]
+	path = Carthage/Checkouts/CleanroomASL
+	url = https://github.com/emaloney/CleanroomASL.git
+[submodule "Carthage/Checkouts/CleanroomLogger"]
+	path = Carthage/Checkouts/CleanroomLogger
+	url = https://github.com/IamAlchemist/CleanroomLogger.git

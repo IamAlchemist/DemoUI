@@ -43,6 +43,7 @@ class MyURLProtocol: NSURLProtocol {
     }
     
     override func startLoading() {
+        MyURLProtocol.statisticDelegate?.urlDidStart(request.URL!.absoluteString)
         // 1
         let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let currentMOC = appdelegate.getCurrentManagedObjectContext()
@@ -63,6 +64,7 @@ class MyURLProtocol: NSURLProtocol {
             self.client!.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
             self.client!.URLProtocol(self, didLoadData: data)
             self.client!.URLProtocolDidFinishLoading(self)
+            MyURLProtocol.statisticDelegate?.urlDidLoad(request.URL!.absoluteString)
         } else {
             // 5
             print("Serving response from NSURLConnection")
@@ -204,6 +206,7 @@ extension MyURLProtocol {
     
     func connectionDidFinishLoading(connection: NSURLConnection!) {
         self.client!.URLProtocolDidFinishLoading(self)
+        MyURLProtocol.statisticDelegate?.urlDidLoad(request.URL!.absoluteString)
         //    self.saveCachedResponse()
         self.saveCachedResponseConcurrent()
     }

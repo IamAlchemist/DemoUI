@@ -7,15 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6450CCF31D476F7C007CF2AB /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6450CCF21D476F7C007CF2AB /* SnapKit.framework */; };
 		6459A8981D59A2C700C89728 /* MyURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459A8971D59A2C700C89728 /* MyURLProtocol.swift */; };
 		6459A89B1D59A5FF00C89728 /* CustomProtocol.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6459A8991D59A5FF00C89728 /* CustomProtocol.storyboard */; };
 		6459A89D1D59A64200C89728 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459A89C1D59A64200C89728 /* BrowserViewController.swift */; };
 		6459A9081D5B241400C89728 /* NSURLProtocolExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6459A9061D5B241400C89728 /* NSURLProtocolExample.xcdatamodeld */; };
 		6459A90B1D5C3F9E00C89728 /* CommonWebView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6459A90A1D5C3F9E00C89728 /* CommonWebView.storyboard */; };
 		6459A90D1D5C421200C89728 /* CommonWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459A90C1D5C421200C89728 /* CommonWebViewController.swift */; };
-		64A754C71D61A5F0006E72C3 /* CleanroomASL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A754C61D61A5F0006E72C3 /* CleanroomASL.framework */; };
-		64A754C81D61A5FC006E72C3 /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A754B61D61A2EA006E72C3 /* CleanroomLogger.framework */; };
 		64A754CA1D61A658006E72C3 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A754C91D61A658006E72C3 /* Util.swift */; };
 		64ADF1101D5883B600A6AFAC /* AutoLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64ADF10E1D5883B600A6AFAC /* AutoLayout.storyboard */; };
 		64ADF1121D58843400A6AFAC /* AutoLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADF1111D58843400A6AFAC /* AutoLayoutViewController.swift */; };
@@ -33,67 +30,13 @@
 		64BD47C81D474CB800A2E89D /* CoordinateHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD47C71D474CB800A2E89D /* CoordinateHeaderViewController.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		64A754B51D61A2EA006E72C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64A754AA1D61A2EA006E72C3 /* CleanroomLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3B00E55D1BA3782D0011486D;
-			remoteInfo = "CleanroomLogger-iOS";
-		};
-		64A754B71D61A2EA006E72C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64A754AA1D61A2EA006E72C3 /* CleanroomLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3B00E57C1BA379830011486D;
-			remoteInfo = "CleanroomLogger-OSX";
-		};
-		64A754B91D61A2EA006E72C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64A754AA1D61A2EA006E72C3 /* CleanroomLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3B00E59A1BA37A420011486D;
-			remoteInfo = "CleanroomLogger-tvOS";
-		};
-		64A754BB1D61A2EA006E72C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64A754AA1D61A2EA006E72C3 /* CleanroomLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3B78C6CE1BA7634E00173EAC;
-			remoteInfo = "CleanroomLogger-watchOS";
-		};
-		64A754BD1D61A2EA006E72C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64A754AA1D61A2EA006E72C3 /* CleanroomLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3B00E5671BA3782D0011486D;
-			remoteInfo = "CleanroomLoggerUnitTests-iOS";
-		};
-		64A754BF1D61A2EA006E72C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64A754AA1D61A2EA006E72C3 /* CleanroomLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3B00E5851BA379830011486D;
-			remoteInfo = "CleanroomLoggerUnitTests-OSX";
-		};
-		64A754C11D61A2EA006E72C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64A754AA1D61A2EA006E72C3 /* CleanroomLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3B00E5A31BA37A420011486D;
-			remoteInfo = "CleanroomLoggerUnitTests-tvOS";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		6450CCF21D476F7C007CF2AB /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		6459A8971D59A2C700C89728 /* MyURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyURLProtocol.swift; sourceTree = "<group>"; };
 		6459A89A1D59A5FF00C89728 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CustomProtocol.storyboard; sourceTree = "<group>"; };
 		6459A89C1D59A64200C89728 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
 		6459A9071D5B241400C89728 /* NSURLProtocolExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NSURLProtocolExample.xcdatamodel; sourceTree = "<group>"; };
 		6459A90A1D5C3F9E00C89728 /* CommonWebView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommonWebView.storyboard; sourceTree = "<group>"; };
 		6459A90C1D5C421200C89728 /* CommonWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonWebViewController.swift; sourceTree = "<group>"; };
-		64A754AA1D61A2EA006E72C3 /* CleanroomLogger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CleanroomLogger.xcodeproj; path = CleanroomLogger/CleanroomLogger.xcodeproj; sourceTree = "<group>"; };
 		64A754C61D61A5F0006E72C3 /* CleanroomASL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomASL.framework; path = "../../Library/Developer/Xcode/DerivedData/DemoUI-fhtvtknmpshzduaplozqhrfyhtnb/Build/Products/Debug-iphonesimulator/CleanroomASL.framework"; sourceTree = "<group>"; };
 		64A754C91D61A658006E72C3 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		64ADF10F1D5883B600A6AFAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AutoLayout.storyboard; sourceTree = "<group>"; };
@@ -119,9 +62,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64A754C81D61A5FC006E72C3 /* CleanroomLogger.framework in Frameworks */,
-				64A754C71D61A5F0006E72C3 /* CleanroomASL.framework in Frameworks */,
-				6450CCF31D476F7C007CF2AB /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,23 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				64A754C61D61A5F0006E72C3 /* CleanroomASL.framework */,
-				6450CCF21D476F7C007CF2AB /* SnapKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		64A754AB1D61A2EA006E72C3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				64A754B61D61A2EA006E72C3 /* CleanroomLogger.framework */,
-				64A754B81D61A2EA006E72C3 /* CleanroomLogger.framework */,
-				64A754BA1D61A2EA006E72C3 /* CleanroomLogger.framework */,
-				64A754BC1D61A2EA006E72C3 /* CleanroomLogger.framework */,
-				64A754BE1D61A2EA006E72C3 /* CleanroomLoggerUnitTests.xctest */,
-				64A754C01D61A2EA006E72C3 /* CleanroomLoggerUnitTests.xctest */,
-				64A754C21D61A2EA006E72C3 /* CleanroomLoggerUnitTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		64ADF10D1D58828700A6AFAC /* AutoLayout */ = {
@@ -188,7 +113,6 @@
 		64BD47A51D47486500A2E89D = {
 			isa = PBXGroup;
 			children = (
-				64A754AA1D61A2EA006E72C3 /* CleanroomLogger.xcodeproj */,
 				64A7548A1D5DD00C006E72C3 /* Frameworks */,
 				64BD47B01D47486500A2E89D /* DemoUI */,
 				64BD47AF1D47486500A2E89D /* Products */,
@@ -285,70 +209,12 @@
 			mainGroup = 64BD47A51D47486500A2E89D;
 			productRefGroup = 64BD47AF1D47486500A2E89D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 64A754AB1D61A2EA006E72C3 /* Products */;
-					ProjectRef = 64A754AA1D61A2EA006E72C3 /* CleanroomLogger.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				64BD47AD1D47486500A2E89D /* DemoUI */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		64A754B61D61A2EA006E72C3 /* CleanroomLogger.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CleanroomLogger.framework;
-			remoteRef = 64A754B51D61A2EA006E72C3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		64A754B81D61A2EA006E72C3 /* CleanroomLogger.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CleanroomLogger.framework;
-			remoteRef = 64A754B71D61A2EA006E72C3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		64A754BA1D61A2EA006E72C3 /* CleanroomLogger.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CleanroomLogger.framework;
-			remoteRef = 64A754B91D61A2EA006E72C3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		64A754BC1D61A2EA006E72C3 /* CleanroomLogger.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CleanroomLogger.framework;
-			remoteRef = 64A754BB1D61A2EA006E72C3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		64A754BE1D61A2EA006E72C3 /* CleanroomLoggerUnitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CleanroomLoggerUnitTests.xctest;
-			remoteRef = 64A754BD1D61A2EA006E72C3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		64A754C01D61A2EA006E72C3 /* CleanroomLoggerUnitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CleanroomLoggerUnitTests.xctest;
-			remoteRef = 64A754BF1D61A2EA006E72C3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		64A754C21D61A2EA006E72C3 /* CleanroomLoggerUnitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CleanroomLoggerUnitTests.xctest;
-			remoteRef = 64A754C11D61A2EA006E72C3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		64BD47AC1D47486500A2E89D /* Resources */ = {
