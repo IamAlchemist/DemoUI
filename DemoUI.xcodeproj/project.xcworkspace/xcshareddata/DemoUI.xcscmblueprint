@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "80AFB107FFE5CD7521296A6945F4BD39A15C1444",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "80AFB107FFE5CD7521296A6945F4BD39A15C1444" : 0,
+    "167D7CA0B9C19B13C943A89E5A3E0A675AE3949C" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "79E23787-D13F-4A24-8F22-74DE0304FF27",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "80AFB107FFE5CD7521296A6945F4BD39A15C1444" : "DemoUI\/",
+    "167D7CA0B9C19B13C943A89E5A3E0A675AE3949C" : "DemoUI\/Util\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DemoUI",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DemoUI.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/IamAlchemist\/SwiftUtil.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "167D7CA0B9C19B13C943A89E5A3E0A675AE3949C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/IamAlchemist\/DemoUI.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "80AFB107FFE5CD7521296A6945F4BD39A15C1444"
+    }
+  ]
+}
